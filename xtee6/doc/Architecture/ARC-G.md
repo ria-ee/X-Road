@@ -117,7 +117,7 @@ The following list contains main design goals and design decisions of the X-Road
 
 10. <a id="Ref_PR-GCONF" class="anchor"></a>\[PR-GCONF\] X-Road: Protocol for Downloading Configuration. Cybernetica AS.
 
-11. <a id="Ref_PR-MANAGE" class="anchor"></a>\[PR-MSERV\] X-Road: Management Services Protocol. Cybernetica AS
+11. <a id="Ref_PR-MSERV" class="anchor"></a>\[PR-MSERV\] X-Road: Management Services Protocol. Cybernetica AS
 
 12. <a id="Ref_PR-MESS" class="anchor"></a>\[PR-MESS\] X-Road: Profile of Messages. Cybernetica AS.
 
@@ -141,9 +141,10 @@ The following list contains main design goals and design decisions of the X-Road
 
 [Figure 1](#Logical_structure_of_X_Road) shows the main components and interfaces of the X-Road system. The components that are not part of the X-Road core are shown on grey background. The components and the interfaces are described in detail in the following sections.
 
+<a id="Logical_structure_of_X_Road" class="anchor"></a>
 ![](img/ARC-G_Logical_structure_of_X_Road.png)
 
-<a id="Logical_structure_of_X_Road" class="anchor"></a>Figure 1. Logical structure of X-Road
+Figure 1. Logical structure of X-Road
 
 ## 2.1 Central Server
 
@@ -350,7 +351,8 @@ Table 1 presents the list of technologies used in the X-Road and mapping between
 
 The diagram also shows what components are installed and hosted by any given organization. The governing authority installs and maintains central server and central security server. The configuration proxy is an optional component that is typically used for distributing configuration to federated X-Road instances. The service client and service provider organizations host their information system and security server that connects the information system to the X-Road.
 
+<a id="Deployment_view_of_X_Road" class="anchor"></a>
 ![](img/ARC-G_Deployment_view_of_X_Road.png)
 
-<a id="Deployment_view_of_X_Road" class="anchor"></a>Figure 2. Deployment view of X-Road
+Figure 2. Deployment view of X-Road
 
