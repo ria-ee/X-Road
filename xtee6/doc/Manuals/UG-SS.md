@@ -220,7 +220,7 @@ The security server also depends on a central server, which provides the global 
 
 -   **X-Road member** is a legal (or physical) person who has joined the X-Road and uses the functionality provided by the X-Road in the capability of service provider and/or user.
 
--   **X-Road messages** are service requests and responses described according to the X-Road Message Protocol (see [[PR-MESS]](#PR-MESS)), that are exchanged between the information systems using or providing services and the security servers.
+-   **X-Road messages** are service requests and responses described according to the X-Road Message Protocol (see \[[PR-MESS](#Ref_PR-MESS)\]), that are exchanged between the information systems using or providing services and the security servers.
 
 ## 1.3 References
 
@@ -237,7 +237,7 @@ The security server also depends on a central server, which provides the global 
 
 6.  <a id="Ref_PR-MESS" class="anchor"></a>\[PR-MESS\] Cybernetica AS. X-Road: Message Protocol v4.0. Document ID: PR-MESS
 
-7.  <a id="Ref_SPECAL" class="anchor"></a>\[SPEC-AL\] Cybernetica AS. X-Road: Audit log events. Document ID: SPEC-AL
+7.  <a id="Ref_SPEC-AL" class="anchor"></a>\[SPEC-AL\] Cybernetica AS. X-Road: Audit log events. Document ID: SPEC-AL
 
 8.  <a id="Ref_PR-OPMON" class="anchor"></a>\[PR-OPMON\] Cybernetica AS. X-Road: Operational Monitoring Protocol. Document ID: PR-OPMON
 
@@ -1194,19 +1194,15 @@ The security server periodically composes signed (and timestamped) documents fro
 
 Configuration parameters are defined in INI files \[[INI](#Ref_INI)\], where each section contains the parameters for a particular security server component. The default message log configuration is located in the file
 
-    /etc/xroad/conf.d/addons/message-log.ini.
+    /etc/xroad/conf.d/addons/message-log.ini
 
 In order to override default values, create or edit the file
 
-    /etc/xroad/conf.d/local.ini.
+    /etc/xroad/conf.d/local.ini
 
 Create the `[message-log]` section (if not present) in the file. Below the start of the section, list the values of the parameters, one per line.
 
-For example, to configure the parameters
-
-    archive-path and archive-max-filesize,
-
-the following lines must be added to the configuration file:
+For example, to configure the parameters `archive-path` and `archive-max-filesize`, the following lines must be added to the configuration file:
 
     [message-log]  
     archive-path=/my/arhcive/path/  
@@ -1264,7 +1260,8 @@ The archive file has been successfully transferred when the archiving server ret
 Override the configuration parameter archive-transfer-command (create or edit the file `etc/xroad/conf.d/local.ini`) to set up a transferring script. For example:
 
     [message-log]  
-    archive-transfer-command=/usr/share/xroad/scripts/archive-http-transporter.sh -r http://my-archiving-server/cgi-bin/upload  
+    archive-transfer-command=/usr/share/xroad/scripts/archive-http-transporter.sh \  
+      -r http://my-archiving-server/cgi-bin/upload  
 
 The message log package contains the CGI script /usr/share/doc/xroad-addon-messagelog/archive-server/demo-upload.pl for a demo archiving server for the purpose of testing or development.
 
@@ -1527,9 +1524,9 @@ For running a separate operational monitoring daemon, the xroad-opmonitor packag
 
 As a result of installation, the following services will be running:
 
-    **xroad**-confclient  
-    **xroad**-signer  
-    **xroad**-opmonitor  
+    xroad-confclient  
+    xroad-signer  
+    xroad-opmonitor  
 
 ### 15.2.5 Configuring an External Operational Monitoring Daemon and the Corresponding Security Server
 
