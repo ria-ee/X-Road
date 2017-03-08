@@ -1,5 +1,8 @@
 # Change Log
 
+## 6.11.0
+- TBD
+
 ## 6.10.0 - 2017-02-15
 - PVAYLADEV-684: Change source code directory structure so that doc folder moves to root level and xtee6 folder is renamed to src. Checkstyle configuration moves to src from doc.
 - PVAYLADEV-670: The document DM-CS central server data model was converted to markdown format and the included ER diagram was done with draw.io tool.
