@@ -26,6 +26,7 @@ import akka.actor.UntypedActor;
 import ee.ria.xroad.common.CodedException;
 import ee.ria.xroad.common.ErrorCodes;
 import ee.ria.xroad.common.messagelog.LogRecord;
+import ee.ria.xroad.common.messagelog.MessageLogProperties;
 import ee.ria.xroad.common.messagelog.MessageRecord;
 import ee.ria.xroad.common.messagelog.TimestampRecord;
 import ee.ria.xroad.common.messagelog.archive.DigestEntry;
@@ -39,6 +40,7 @@ import org.apache.commons.io.IOUtils;
 import org.apache.commons.io.output.NullOutputStream;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
+import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
 
@@ -70,6 +72,7 @@ public class LogArchiver extends UntypedActor {
 
     private final Path archivePath;
     private final Path workingPath;
+    private boolean safeTransactionBatch;
 
     @Override
     public void onReceive(Object message) throws Exception {
@@ -77,7 +80,8 @@ public class LogArchiver extends UntypedActor {
 
         if (START_ARCHIVING.equals(message)) {
             try {
-                handleArchive();
+                long maxTimestampId = doInTransaction(session -> getMaxTimestampId(session));
+                while (handleArchive(maxTimestampId)) { }
             } catch (Exception ex) {
                 log.error("Failed to archive log records", ex);
             }
@@ -86,12 +90,12 @@ public class LogArchiver extends UntypedActor {
         }
     }
 
-    private void handleArchive() throws Exception {
-        doInTransaction(session -> {
-            List<LogRecord> records = getRecordsToBeArchived(session);
+    private boolean handleArchive(long maxTimestampId) throws Exception {
+        return doInTransaction(session -> {
+            List<LogRecord> records = getRecordsToBeArchived(session, maxTimestampId);
             if (records == null || records.isEmpty()) {
                 log.info("No records to be archived at this time");
-                return null;
+                return false;
             }
 
             log.info("Archiving log records...");
@@ -110,7 +114,14 @@ public class LogArchiver extends UntypedActor {
                     session.flush();
                     session.clear();
 
-                    records = getRecordsToBeArchived(session);
+                    if (safeTransactionBatch
+                            && recordsArchived >= MessageLogProperties.getArchiveTransactionBatchSize()) {
+                        log.info("Archived {} log records in {} ms", recordsArchived,
+                                System.currentTimeMillis() - start);
+                        return true;
+                    }
+
+                    records = getRecordsToBeArchived(session, maxTimestampId);
                 }
             } catch (Exception e) {
                 throw new CodedException(ErrorCodes.X_INTERNAL_ERROR, e);
@@ -119,7 +130,7 @@ public class LogArchiver extends UntypedActor {
             log.info("Archived {} log records in {} ms", recordsArchived,
                     System.currentTimeMillis() - start);
 
-            return null;
+            return false;
         });
     }
 
@@ -166,11 +177,11 @@ public class LogArchiver extends UntypedActor {
         return workingPath;
     }
 
-    protected List<LogRecord> getRecordsToBeArchived(Session session) {
+    protected List<LogRecord> getRecordsToBeArchived(Session session, long maxTimestampId) {
         List<LogRecord> recordsToArchive = new ArrayList<>();
-
+        safeTransactionBatch = false;
         int allowedInArchiveCount = MAX_RECORDS_IN_ARCHIVE;
-        for (TimestampRecord ts : getNonArchivedTimestampRecords(session, MAX_RECORDS_IN_PATCHS)) {
+        for (TimestampRecord ts : getNonArchivedTimestampRecords(session, MAX_RECORDS_IN_PATCHS, maxTimestampId)) {
             List<MessageRecord> messages =
                     getNonArchivedMessageRecords(session, ts.getId(),
                             allowedInArchiveCount);
@@ -178,6 +189,7 @@ public class LogArchiver extends UntypedActor {
                 log.trace("Timestamp record #{} will be archived",
                         ts.getId());
                 recordsToArchive.add(ts);
+                safeTransactionBatch = true;
             } else {
                 log.trace("Timestamp record #{} still related to"
                                 + " non-archived message records",
@@ -195,11 +207,21 @@ public class LogArchiver extends UntypedActor {
 
     @SuppressWarnings("unchecked")
     protected List<TimestampRecord> getNonArchivedTimestampRecords(
-            Session session, int maxRecordsToGet) {
+            Session session, int maxRecordsToGet, long maxTimestampId) {
         Criteria criteria = session.createCriteria(TimestampRecord.class);
         criteria.add(Restrictions.eq("archived", false));
+        criteria.add(Restrictions.le("id", maxTimestampId));
         criteria.setMaxResults(maxRecordsToGet);
+        criteria.addOrder(Order.asc("id"));
         return criteria.list();
+    }
+
+    @SuppressWarnings("unchecked")
+    protected long getMaxTimestampId(
+            Session session) {
+        Criteria criteria = session.createCriteria(TimestampRecord.class);
+        criteria.setProjection(Projections.max("id"));
+        return (long)criteria.uniqueResult();
     }
 
     @SuppressWarnings("unchecked")
