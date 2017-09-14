@@ -110,21 +110,10 @@ public class HardwareModuleWorker extends AbstractModuleWorker {
 
         Map<String, TokenType> tokens = new HashMap<>();
 
-        // Only scan defined slot if HSM_SLOT_INDEX variable present and belongs to available slots
-        int hsmSlotIndex = SystemProperties.getHSMSlotIndex();
-        if (hsmSlotIndex != -1 && hsmSlotIndex <= slots.length) {
-            TokenType token = createToken(slots, hsmSlotIndex);
-            TokenType previous = tokens.putIfAbsent(token.getId(), token);
-
-            if (previous == null) {
-                log.info("Module '{}' slot #{} has token with ID '{}': {}", module.getType(), hsmSlotIndex,
-                token.getId(), token);
-            } else {
-                log.info("Module '{}' slot #{} has token with ID '{}' but token with that ID is already registered",
-                        module.getType(), hsmSlotIndex, token.getId());
-            }
-        }  else {
-
+        // HSM slots defined in signer configuration
+        String[] hsmSlots = SystemProperties.getHSMSlotIndexes();
+        // Scan all available HSM slots
+        if (hsmSlots[0] == "") {
             for (int slotIndex = 0; slotIndex < slots.length; slotIndex++) {
                 TokenType token = createToken(slots, slotIndex);
                 TokenType previous = tokens.putIfAbsent(token.getId(), token);
@@ -135,6 +124,26 @@ public class HardwareModuleWorker extends AbstractModuleWorker {
                 } else {
                     log.info("Module '{}' slot #{} has token with ID '{}' but token with that ID is already registered",
                             module.getType(), slotIndex, token.getId());
+                }
+            }
+        // Only scan defined slot if HSM_SLOT_INDEXES variable configured
+        } else {
+            for (int i = 0; i < hsmSlots.length; i++) {
+                if (hsmSlots[i].matches("\\d+")) {
+                    int hsmSlotIndex = Integer.parseInt(hsmSlots[i]);
+                    if (hsmSlotIndex < slots.length) {
+                        TokenType token = createToken(slots, hsmSlotIndex);
+                        TokenType previous = tokens.putIfAbsent(token.getId(), token);
+
+                        if (previous == null) {
+                            log.info("Module '{}' slot #{} has token with ID '{}': {}", module.getType(), hsmSlotIndex,
+                            token.getId(), token);
+                        } else {
+                            log.info("Module '{}' slot #{} has token with ID '{}' "
+                                   + "but token with that ID is already registered",
+                                     module.getType(), hsmSlotIndex, token.getId());
+                        }
+                    }
                 }
             }
         }

@@ -301,8 +301,8 @@ public final class SystemProperties {
     public static final String OCSP_RESPONSE_RETRIEVAL_ACTIVE =
             PREFIX + "signer.ocsp-response-retrieval-active";
 
-    public static final String HSM_SLOT_INDEX =
-            PREFIX + "signer.hsm-slot-index";
+    public static final String HSM_SLOT_INDEXES =
+            PREFIX + "signer.hsm-slot-indexes";
 
     // AntiDos ----------------------------------------------------------------
 
@@ -763,10 +763,10 @@ public final class SystemProperties {
     }
 
     /**
-     * @return optional HSM device slot index, default -1
+     * @return optional HSM device slot indexes to use, "" by default
      */
-    public static int getHSMSlotIndex() {
-        return Integer.parseInt(System.getProperty(HSM_SLOT_INDEX, "-1"));
+    public static String[] getHSMSlotIndexes() {
+        return System.getProperty(HSM_SLOT_INDEXES, "").split(",");
     }
 
     /**
