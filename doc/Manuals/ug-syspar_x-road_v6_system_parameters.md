@@ -1,6 +1,6 @@
 # X-Road: System Parameters User Guide
 
-Version: 2.23  
+Version: 2.24  
 Doc. ID: UG-SYSPAR
 
 | Date       | Version     | Description                                                                  | Author             |
@@ -33,6 +33,7 @@ Doc. ID: UG-SYSPAR
 | 14.06.2017 | 2.21        | Added new parameter *allowed-federations* for enabling federation in a security server. | Olli Lindgren |
 | 11.07.2017 | 2.22        | Changed connector SO-linger values to -1 as per code changes | Tatu Repo |
 | 18.08.2017 | 2.23        | Update wsdl-validator-command description | Jarkko Hyöty |
+| 14.09.2017 | 2.24        | Added new parameter signer.hsm-slot-indexes | Toomas Vahtra |
 
 ## Table of Contents
 
@@ -200,6 +201,7 @@ This chapter describes the system parameters used by the components of the X-Roa
 | signer               | port                                             | 5556                                       | TCP port on which the signer process listens. |
 | signer               | key-length                                       | 2048                                       | Key length for generating authentication and signing keys (since version 6.7) |
 | signer               | csr-signature-digest-algorithm                   | SHA-256                                    | Certificate Signing Request signature digest algorithm.<br/>Possible values are<br/>-   SHA-256,<br/>-   SHA-384,<br/>-   SHA-512. |
+| signer               | hsm-slot-indexes                                 | none                                       | Optional comma-separated list of HSM slot indexes.<br/>Needed for some HSM devices, that present all slots, <br/>to prevent unnecessary slot scanning |
 | anti-dos             | enabled                                          | true                                       | Flag for enabling or disabling the AntiDOS system. |
 | anti-dos             | max-cpu-load                                     | 1.1                                        | Maximum allowed CPU load for accepting new connections. If set to &gt; 1.0, then CPU load is not checked. |
 | anti-dos             | max-heap-usage                                   | 1.1                                        | Specifies the maximum allowed Java heap usage when accepting new connections. If set to &gt; 1.0, then heap usage is not checked. |

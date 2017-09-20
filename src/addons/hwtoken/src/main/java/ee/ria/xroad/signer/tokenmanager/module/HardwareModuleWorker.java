@@ -42,6 +42,7 @@ import ee.ria.xroad.signer.tokenmanager.token.HardwareToken;
 import ee.ria.xroad.signer.tokenmanager.token.HardwareTokenType;
 import ee.ria.xroad.signer.tokenmanager.token.TokenType;
 import ee.ria.xroad.signer.util.SignerUtil;
+import ee.ria.xroad.common.SystemProperties;
 
 import static ee.ria.xroad.signer.tokenmanager.token.HardwareTokenUtil.moduleGetInstance;
 
@@ -109,19 +110,48 @@ public class HardwareModuleWorker extends AbstractModuleWorker {
 
         Map<String, TokenType> tokens = new HashMap<>();
 
-        for (int slotIndex = 0; slotIndex < slots.length; slotIndex++) {
-            TokenType token = createToken(slots, slotIndex);
-            TokenType previous = tokens.putIfAbsent(token.getId(), token);
+        // HSM slots defined in signer configuration
+        String[] hsmSlots = SystemProperties.getHSMSlotIndexes();
+        // Scan all available HSM slots
+        if (hsmSlots.length == 0) {
+            for (int slotIndex = 0; slotIndex < slots.length; slotIndex++) {
+                TokenType token = createToken(slots, slotIndex);
+                TokenType previous = tokens.putIfAbsent(token.getId(), token);
 
-            if (previous == null) {
-                log.info("Module '{}' slot #{} has token with ID '{}': {}", module.getType(), slotIndex, token.getId(),
-                        token);
-            } else {
-                log.info("Module '{}' slot #{} has token with ID '{}' but token with that ID is already registered",
-                        module.getType(), slotIndex, token.getId());
+                if (previous == null) {
+                    log.info("Module '{}' slot #{} has token with ID '{}': {}", module.getType(), slotIndex,
+                    token.getId(), token);
+                } else {
+                    log.info("Module '{}' slot #{} has token with ID '{}' but token with that ID is already registered",
+                            module.getType(), slotIndex, token.getId());
+                }
+            }
+        // Only scan defined slots if HSM_SLOT_INDEXES variable configured
+        } else {
+            for (int i = 0; i < hsmSlots.length; i++) {
+                if (hsmSlots[i].matches("\\d+")) {
+                    int hsmSlotIndex = Integer.parseInt(hsmSlots[i]);
+                    if (hsmSlotIndex < slots.length) {
+                        TokenType token = createToken(slots, hsmSlotIndex);
+                        TokenType previous = tokens.putIfAbsent(token.getId(), token);
+
+                        if (previous == null) {
+                            log.info("Module '{}' slot #{} has token with ID '{}': {}", module.getType(), hsmSlotIndex,
+                            token.getId(), token);
+                        } else {
+                            log.info("Module '{}' slot #{} has token with ID '{}' "
+                                   + "but token with that ID is already registered",
+                                     module.getType(), hsmSlotIndex, token.getId());
+                        }
+                    } else {
+                        log.error("Invalid HSM slot index configured: {}, available slot indexes 0 - {}", hsmSlotIndex,
+                                 slots.length - 1);
+                    }
+                } else {
+                    log.error("Invalid HSM slot index configured: {}", hsmSlots[i]);
+                }
             }
         }
-
         return new ArrayList<>(tokens.values());
     }
 

@@ -6,7 +6,7 @@
 # Security Server Installation Guide
 **X-ROAD 6**
 
-Version: 2.9  
+Version: 2.10  
 Doc. ID: IG-SS
 
 ---
@@ -34,6 +34,7 @@ Doc. ID: IG-SS
  23.02.2017 | 2.7     | Converted to Github flavoured Markdown, added license text, adjusted tables for better output in PDF | Toomas Mölder
  13.04.2017 | 2.8     | Added token ID formatting                                       | Cybernetica AS
  25.08.2017 | 2.9     | Update environmental monitoring installation information | Ilkka Seppälä
+ 14.09.2017 | 2.10    | Added HSM slot index configuration info | Toomas Vahtra
 
 ## Table of Contents
 
@@ -244,6 +245,14 @@ To configure support for hardware security tokens (smartcard, USB token, Hardwar
 4.  After installing and configuring the driver, the `xroad-signer` service must be restarted:
 
         sudo service xroad-signer restart
+
+With some HSM drivers, it is not possible to configure specific slots for the server to use.
+To prevent scanning a lot of unnecessary slots specific slot indexes for signer to use can be
+configured in `/etc/xroad/conf.d/local.ini`. For example:
+
+        [signer]
+        ; Optional comma-separated list of HSM slot indexes
+        hsm-slot-indexes=0,7,12
 
 If you are running a high availability (HA) hardware token setup (such as a cluster with replicated tokens) then you may need to constrain the token identifier format such that the token replicas can be seen as the same token. The token identifier format can be changed in /etc/xroad/devices.ini via the `token_id_format` property (default value: `{moduleType}{slotIndex}{serialNumber}{label}`). Removing certain parts of the identifier will allow the HA setup to work correctly when one of the tokens goes down and is replaced by a replica. For example, if the token replicas are reported to be on different slots the `{slotIndex}` part should be removed from the identifier format.
 

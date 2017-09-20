@@ -301,6 +301,9 @@ public final class SystemProperties {
     public static final String OCSP_RESPONSE_RETRIEVAL_ACTIVE =
             PREFIX + "signer.ocsp-response-retrieval-active";
 
+    public static final String HSM_SLOT_INDEXES =
+            PREFIX + "signer.hsm-slot-indexes";
+
     // AntiDos ----------------------------------------------------------------
 
     /** Property name of the AntiDos on/off switch */
@@ -757,6 +760,14 @@ public final class SystemProperties {
      */
     public static int getSignerKeyLength() {
         return Math.max(MIN_SIGNER_KEY_LENGTH, Integer.getInteger(SIGNER_KEY_LENGTH, DEFAULT_SIGNER_KEY_LENGTH));
+    }
+
+    /**
+     * @return optional HSM device slot indexes to use, "" by default
+     */
+    public static String[] getHSMSlotIndexes() {
+        String hsmSlotIndexes = System.getProperty(HSM_SLOT_INDEXES, "");
+        return hsmSlotIndexes == "" ? new String[0] : hsmSlotIndexes.split(",");
     }
 
     /**
