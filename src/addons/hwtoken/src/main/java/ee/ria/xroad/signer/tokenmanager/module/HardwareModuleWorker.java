@@ -113,7 +113,7 @@ public class HardwareModuleWorker extends AbstractModuleWorker {
         // HSM slots defined in signer configuration
         String[] hsmSlots = SystemProperties.getHSMSlotIndexes();
         // Scan all available HSM slots
-        if (hsmSlots[0] == "") {
+        if (hsmSlots.length == 0) {
             for (int slotIndex = 0; slotIndex < slots.length; slotIndex++) {
                 TokenType token = createToken(slots, slotIndex);
                 TokenType previous = tokens.putIfAbsent(token.getId(), token);
@@ -126,7 +126,7 @@ public class HardwareModuleWorker extends AbstractModuleWorker {
                             module.getType(), slotIndex, token.getId());
                 }
             }
-        // Only scan defined slot if HSM_SLOT_INDEXES variable configured
+        // Only scan defined slots if HSM_SLOT_INDEXES variable configured
         } else {
             for (int i = 0; i < hsmSlots.length; i++) {
                 if (hsmSlots[i].matches("\\d+")) {
@@ -143,7 +143,12 @@ public class HardwareModuleWorker extends AbstractModuleWorker {
                                    + "but token with that ID is already registered",
                                      module.getType(), hsmSlotIndex, token.getId());
                         }
+                    } else {
+                        log.error("Invalid HSM slot index configured: {}, available slot indexes 0 - {}", hsmSlotIndex,
+                                 slots.length - 1);
                     }
+                } else {
+                    log.error("Invalid HSM slot index configured: {}", hsmSlots[i]);
                 }
             }
         }

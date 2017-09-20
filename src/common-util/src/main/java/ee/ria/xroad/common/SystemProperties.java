@@ -766,7 +766,8 @@ public final class SystemProperties {
      * @return optional HSM device slot indexes to use, "" by default
      */
     public static String[] getHSMSlotIndexes() {
-        return System.getProperty(HSM_SLOT_INDEXES, "").split(",");
+        String hsmSlotIndexes = System.getProperty(HSM_SLOT_INDEXES, "");
+        return hsmSlotIndexes == "" ? new String[0] : hsmSlotIndexes.split(",");
     }
 
     /**
