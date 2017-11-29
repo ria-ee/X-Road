@@ -1,0 +1,369 @@
+es:
+  common:
+    name: "Nombre"
+    code: "Código"
+    class: "Clase"
+    subsystem: "Subsistema"
+    auth_cert_hash: "Resumen criptográfico"
+    filename_empty: "Falta el nombre del archivo"
+    cert: "Certificado"
+    cert_unreadable: "Certificado del archivo '%{filename}' no pudo ser leído"
+    cert_view: "Ver certificado"
+    subject_dn: "Nombre Distintivo del sujeto"
+    issuer_dn: "Nombre distintivo del emisor"
+    upload: "Subir"
+    valid_from: "Formulario Valido"
+    valid_to: "Valido Para"
+
+  about:
+    index:
+      name: "Servidor Central"
+      version: "versión"
+
+  init:
+    index:
+      heading: "Configuración inicial"
+      central_server_identification: "Identificación del Servidor Central"
+      instance_identifier: "Identificador de Instancia"
+      instance_identifier_help: "Código de instancia X-Road, identificador único de esta instancia."
+      central_server_address: "Dirección de Servidor Central"
+      central_server_address_help: "Nombre DNS del servidor central o dirección IP externa. Usada para conexiones entrantes desde la red externa hacia el servidor central."
+      software_token: "Software de Token"
+      pin: "PIN"
+      pin_help: "PIN para acceder al token software."
+      repeat_pin: "Repetir PIN"
+      initialized: "Servidor Central inicializado"
+
+  orgs:
+    index:
+      name: "Código de registro"
+      fullname: "Nombre completo del miembro de X-Road"
+      enter_name: "Código de registro:"
+      enter_fullname: "Ingrese el nombre completo del miembro de X-Road:"
+      add_address: "Agregar dirección"
+      delete: "Borrar"
+      add_contact: "Agregar  correo electrónico"
+      add_auth_cert_hash: "Agregar resumen criptográfico de  certificado"
+      contact: "Dirección de correo electrónico"
+      address: "Direcciones de servidores de seguridad"
+
+  members:
+    name: "Nombre del miembro"
+    class: "Clase del miembro"
+    code: "Código del miembro"
+    admin_contact: "Contacto administrativo"
+    search: "Buscar  Miembro"
+    add:
+      title: "Agregar Miembro"
+      load_from_file: "Cargar datos de archivo"
+    edit:
+      title: "Detalles de miembros"
+      server: "Servidor"
+      details:
+        legend: "Detalles de Miembros"
+      contact:
+        title: "Editar contacto de miembro"
+        legend: "Editar contacto de miembro"
+      owned_servers:
+        legend: "Servidores subordinados"
+      global_group_membership:
+        legend: "Membresía de Grupo Global "
+        group: "Group"
+        description: "Descripción de Grupo"
+        subsystem:
+          table: "Subsistema"
+          add: "Agregar miembro de subsistema"
+        added_to_group: "Agregado al Grupo"
+        add_member_to_group: "Agergar '{{member}}' al  Grupo"
+        remove_confirm: "Está seguro que desea eliminar al miembro '{{member}}' del grupo global '{{group}}'?"
+      subsystems:
+        legend: "Subsistemas"
+        subsystem_code: "Código de Subsistema"
+        used_servers: "Servidores en Uso"
+        delete: "Borrar Subsistema"
+        remove_confirm: "Está seguro que desea quitar al miembro '{{memberCode}}({{memberClass}})' del subsistema '{{subsystem}}'?"
+      used_servers:
+        legend: "Servidores en Uso"
+        server_code: "Código de Servidor"
+        client_subsystem_code: "Código de Cliente de Subsistema"
+        server_owner: "Propietario del Servidor"
+        add:
+          title: "Nueva Solicitud de Registro de Cliente"
+          management_service_provider_title: "Solicitud de Registro de Proveedor de Servicio de Gestión"
+          client:
+            legend: "Información del Cliente"
+        remove:
+          title: "Solicitud de Borrado de Cliente"
+          client:
+            legend: "Información del Cliente"
+      name:
+        title: "Editar Nombre Miembro"
+      all_servers:
+        search:
+          title: "Servidores de Seguridad"
+    remove_confirm: " Está seguro que desea quitar al miembro '{{memberCode}}({{memberClass}})'? {{ownedServersMessage}}"
+    removable_owned_servers: "Los siguientes servidores subordinados  servers a este miembro también serán eliminados: '{{serversToRemove}}'"
+
+  management_requests:
+    legend: "Solicitud de Administración"
+    process_id: "ID de Solicitud"
+    received: "Recibida"
+    process_type: "Tipo de Solicitud"
+    created: "Creada"
+    status: "Estado"
+    request_id: "ID de Solicitud"
+    request_type: "Tipo de Solicitud"
+    comments: "Comentarios"
+    auth_cert_reg: "Registro de certificados"
+    client_reg: "Registro de cliente"
+    auth_cert_deletion: "Borrado de certificado"
+    client_deletion: "Borrado de cliente"
+    source: "Fuente"
+    source_center: "Fuente central X-Road"
+    source_security_server: "Servidor de seguridad"
+    server_owner_name: "Nombre del Propietario del Servidor"
+    server_owner_class: "Clase del Propietario del Servidor "
+    server_owner_code: "Código del Propietario del Servidor "
+    server_code: "Código del Servidor"
+    complementary_id: "ID de Solicitud complementaria"
+    revoking_id: "ID de Solicitud de revocamiento"
+    details:
+      auth_cert_deletion:
+        title: "Detalles de Solicitud de Borrado de Certificado de Autenticación"
+        legend: "Borrado de Certificado de Autenticación Solicitado"
+      auth_cert_reg:
+        title: "Detalles de Solicitud de Registro de Certificado de Autenticación"
+        legend: "Registro de Certificado de Autenticación Solicitado"
+        new:
+          title: "Registro de Certificado de Autenticación"
+      client_deletion:
+        title: "Detalles de Solicitud de Borrado de Cliente de Servidor de Seguridad"
+        legend: "Borrado de Cliente Solicitado"
+      client_reg:
+        title: "Detalles de Solicitud de Registro de Cliente de Servidor de Seguridad"
+        legend: "Registro de Cliente Solicitado"
+      approve_confirm: "Está seguro que desea aprobar la solicitud?"
+      revoke_confirm: "Está seguro que desea revocar la solicitud?"
+      decline_confirm: "Está seguro que desea denegar la solicitud?"
+      member_not_found: "<miembro no encontrado>"
+    request:
+      legend: "Solicitud de Información"
+    securityserver:
+      legend: "Información del Servidor de Seguridad Afectada"
+
+  securityservers:
+    server_code: "Código del Servidor"
+    owner_name: "Nombre del Propietario"
+    owner_class: "Clase del Propietario"
+    owner_code: "Código del Propietario"
+    address: "Dirección"
+    registered: "Registrado"
+    info:
+      legend: "Información del Servidor de Seguridad"
+    details:
+      title: "Servidor de Seguridad"
+      legend: "Detalles del Servidor de Seguridad"
+    edit:
+      address:
+        title: "Editar Dirección"
+        legend: "Editar Dirección"
+      categories:
+        title: "Categorías de Seguridad"
+    categories:
+      legend: "Categorías de Seguridad"
+    clients:
+      legend: "Clientes"
+      name: "Nombre"
+      class: "Clase"
+      code: "Código"
+      subsystem_code: "Código de Subsistema"
+      add: "Agregar Cliente de Servidor"
+    auth_cert:
+      legend: "Certificados de Autenticación"
+      ca: "CA"
+      serial_number: "Número de Serie"
+      subject: "Sujeto"
+      expires: "Expira"
+      upload: "Subir"
+      add:
+        title: "Agregar Certificado de Autenticación"
+      owner:
+        legend: "Servidor de Seguridad"
+      cert:
+        legend: "Información Certificado de Autenticación "
+      delete:
+        title: "Borrar Certificado de Autenticación "
+    remove_confirm: "Esta seguro que desea eliminar el servidor de seguridad '{{server}}' perteneciente a '{{ownerCode}}({{ownerClass}})'?"
+
+  groups:
+    code: "Código"
+    updated: "Actualizado"
+    member_count: "Cantidad de Miembros"
+    add:
+      button: "Agregar"
+      title: "Nuevo Grupo"
+      selected: "Agregar Seleccionados"
+      all: "Agregar Todos"
+    remove:
+      confirm: "Está seguro que desea eliminar el grupo '{{group}}'?"
+      selected_members_confirm: " Esta seguro que desea eliminar los miembros seleccionados del grupo '{{group}}'?"
+    details:
+      title: "Grupo global '{{group}}'"
+      members: "Membros del grupo"
+      members_add_title: "Agregar Miembros al Grupo Global '{{group}}'"
+      members_add_search_show_members: "Mostrar miembros del grupo  en los resultados de la búsqueda"
+      name: "Nombre"
+      code: "Código"
+      class: "Clase"
+      subsystem: "Subsistema"
+      xroad: "Instancia"
+      type: "Tipo"
+      added: "Agregado"
+      delete_group: "Eliminar grupo"
+      remove_selected_members: "Remover miembros seleccionados"
+      add_members: "Agregar miembros"
+      description:
+        edit:
+          title: "Editar Descripción"
+    index:
+      group_name: "Nombre del grupo"
+      org_name: "Nombre de la entidad miembro de X-Road"
+      group_to_org: "Ordenar por grupos"
+      org_to_group: "Ordenar  por entidad miembro"
+      org_not_in_group: " Las entidades miembro no pertenecen al grupo seleccionado."
+    orgs:
+      add_all: "Agregar todas las entidades miembro"
+      add_selected: "Agregar las entidades miembro seleccionadas"
+      remove_confirm: "Está seguro que desea remover la entidad miembro '{{member}}'  del grupo '{{group}}'?"
+
+  central_services:
+    central_service: "Servicio Central"
+    service_code: "Código"
+    implementing_service_code: "Código"
+    implementing_service: "Servicio Ofrecido"
+    provider_legend: "Proveedor"
+    provider_name: "Nombre del Proveedor"
+    provider_code: "Código del Proveedor"
+    service_version: "Versión"
+    provider_class: "Clase del Proveedor"
+    provider_subsystem: "Subsistema del Proveedor"
+    details:
+      button: "Agregar"
+      central_service_code: "Código del Servicio Central"
+      implementing_service:
+        legend: "Servicio Ofrecido"
+        code: "Código"
+        provider_name: "Nombre del Proveedor"
+        search_title: "Seleccione proveedor del servicio ofrecido"
+      search_provider: "Buscar proveedor"
+    remove_confirm: "Está seguro que desea remover el servicio central '{{service}}'?"
+    new_title: "Agregar Servicio Central"
+    edit_title: "Editar servicio central '{{service}}'"
+    remove_target_service_confirm: "Está seguro que desea remover el servicio del servicio central '{{service}}'?"
+
+  layouts:
+    application:
+      title: "Administración Servidor Central"
+      server_type: "Servidor Central"
+
+  approved_cas:
+    upload_ca_cert: "Insertar Certificado de AC del servicio"
+    upload_intermediate_ca_cert: "Inserte Certificado de AC Intermediaria del Servicio "
+    trusted_certification_service: "Servicio de Certificación de Confianza"
+    approved_ca_details: "Detalles de la AC del Servicio de Certificación"
+    ca_certificate: "Certificado de AC"
+    ocsp_responders: "Servidores OCSP"
+    edit_ocsp_responder: "Editar Servidor OCSP"
+    add_ocsp_responder: "Agregar Servidor OCSP"
+    ca_settings: "Parámetros de AC"
+    authentication_only: "Esta AC sólo puede ser utilizada para autenticación TLS"
+    authentication_only_hint: "(Marque si aplica)"
+    cert_profile_info: "Información de Perfil de Certificado"
+    cert_profile_info_hint: "(Nombre de la clase para lectura de certificados \nee.ria.xroad.common.certificateprofile.\nimpl.EjbcaCertificateProfileInfoProvider)"
+    intermediate_cas: "AC Intermedias"
+    intermediate_ca: "AC Intermedia"
+    intermediate_ca_details: "Detalles de AC Intermedia"
+    valid_from: "Valido Desde"
+    valid_to: "Valido Hasta"
+    remove_confirm: "Está seguro que desea eliminar la AC '{{approvedCa}}'?"
+
+  distributed_files:
+    filetype: "Tipo de archivo"
+    info: "Información"
+    no_file: "Archivo no encontrado"
+    identifier_mapping:
+      upload:
+        title: "Subir archivo de asociación de identificadores"
+        enter_file_name: "Ingrese el Nombre del Archivo"
+    last_result: "Último Resultado"
+
+  system_status:
+    enter_softtoken_pin: "Ingresar codigo PIN"
+    softtoken_pin_not_entered: "PIN para el token de firma no ha sido ingresado"
+    signing_token_not_initialized: "El token de firma no ha sido inicializado,  puede hacerlo usando la consola de firma."
+
+  tsps:
+    edit_new: "Agregar Servicio de Sellado de Tiempo"
+    edit_existing: "Editar Servicio de Sellado de Tiempo"
+    remove_confirm: "Esta seguro que desea eliminar el servicio de sellado de tiempo '{{tsp}}'?"
+
+  configuration_management:
+    source_tab:
+      internal_configuration: " Configuración Interna"
+      external_configuration: " Configuración Externa"
+      recreate: "Re-Crear"
+      anchor: "Ancla"
+      anchor_file_not_found: "Archivo ancla no se encontró"
+      download_url: "URL de Descarga"
+      signing_keys: "Llaves de Firma"
+      token: "Token"
+      login: "Entrar"
+      logout: "Salir"
+      activate: "Activar"
+      new_key: "Nueva Llave"
+      device_key: "ID de Equipo: ID de Llave"
+      configuration_parts: "Componentes de Configuración"
+      file_name: "Archivo"
+      content_identifier: "Identificador de Contenido"
+      version: "Versión"
+      updated: "Actualizado"
+      upload_configuration_part: "Subir Componente de Configuración"
+      activate_signing_key_confirm: "Activar llave '{{key_id}}'?"
+      delete_signing_key_confirm: "Borrar llave '{{key_id}}'?"
+      part_validator_stderr_title: "Error de validación"
+
+    trusted_anchors:
+      title: "Anclas de Configuración "
+      none: "No se encontraron anclas de configuración."
+      download: "Descargar"
+      delete: "Borrar"
+      delete_confirm: "Esta seguro que desea eliminar el ancla de configuración para la instancia '{{instanceIdentifier}}'?"
+      generated: "Generada:"
+      upload:
+        button_title: "Agregar Ancla"
+        dialog_title: "Agregar Ancla de Configuración"
+        confirm: "Está seguro que desea agregar una nueva ancla de configuración?"
+      save:
+        dialog_title: "Confirmar"
+
+  system_settings:
+    index:
+      system_parameters: "Parámetros del Sistema"
+      instance_identifier: "Identificador de Instancia"
+      central_server_address: "Dirección de Servidor Central"
+      management_services: "Servicios de Administración"
+      service_provider_id: "Identificador de Proveedor de Servicio"
+      service_provider_name: "Nombre de Proveedor de Servicio"
+      service_provider_security_servers: "Servidor de Seguridad de Gestión de Servicios'"
+      wsdl_address: "Dirección del WSDL"
+      services_address: "Dirección del Servicio"
+      security_server_owners_group: "Código del Grupo de Propietarios del Servicio de Seguridad"
+      member_classes: "Clase de Miembro"
+      member_class_code: "Código"
+      member_class_description: "Descripción"
+      member_class_add: "Agregar Clase Miembro"
+      member_class_edit: "Editar Clase Miembro"
+
+  shared:
+    cert_details_dialog:
+      cert_details: "Detalles del Certificado"

@@ -1,0 +1,272 @@
+es:
+  about:
+    index:
+      name: "Servidor de Seguridad"
+      version: "versión"
+
+  clients:
+    index:
+      add_client: "Agregar Cliente"
+      member_name: "Nombre del Miembro"
+      member_class: "Clase del Miembro"
+      member_code: "Código del Miembro"
+      subsystem_code: "Código de Subsistema"
+      state: "Estado"
+
+    client_add_dialog:
+      select: "Seleccione un Cliente de la Lista Global"
+      new_client: "Nuevo Cliente"
+      send_regreq: "¿Desea enviar un petición de registro de cliente para el usuario agregado?<br/>{{new_subsystem_warning}}"
+      new_subsystem: "El nuevo sub-sistema '%{subsystem_code}'será enviado para ser registrado bajo el miembro'%{member_name} %{member_class}: %{member_code}'."
+
+    client_select_dialog:
+      select_client: "Seleccione Cliente"
+      filter: "Mostrar solamente clientes locales"
+      label_title: "Mostrar miembros y subsistemas registrados en este Servidor de Seguridad."
+
+    client_details_dialog:
+      title: "Client ID: "
+      details: "Detalles"
+      local_groups: "Grupos Locales"
+      internal_servers: "Servidores Internos"
+      services: "Servicios"
+      acl_subjects: "Clientes del Servicio"
+
+    client_details_tab:
+      certificates: "Certificados"
+      ca: "Autoridad Certificadora"
+      serial_number: "Número de Serie"
+      state: "Provincia"
+      expires: "Expira"
+      register: "Registrar"
+      unregister: "Eliminar registro"
+      delete: "Borrar"
+      send_regreq_confirm: "¿Está seguro que desea enviar una petición para registrar al cliente?<br/>"
+      send_delreq_confirm: "¿Está seguro que desea enviar una petición para eliminar el registro del cliente?<br/>"
+      delete_client: "Petición enviada. ¿Desea borrar el cliente?"
+      delete_client_confirm: "¿Está seguro que desea borrar al cliente?"
+      delete_certs_title: "Borrado de Certificado"
+      delete_certs: "El certificado de firma asociado con el cliente borrado '{{client_id}}' no tiene ningún usuario. ¿Desea borrar el certificado?"
+
+    client_groups_tab:
+      local_groups: "Grupos Locales"
+      member_title: "{{client}} : Grupos Locales"
+      subsystem_title: "{{member}} subsystem {{subsystem}} : Grupos Locales"
+      details: "Detalles"
+      add_group: "Agergar Grupo"
+      code: "Código"
+      member_count: "Conteo de Miembros"
+      updated: "Actualizado"
+      new_group: "Nuevo Grupo"
+
+    group_details_dialog:
+      title: "Grupo Local {{group}}"
+      edit_title: "Editar Descripción"
+      group_members: "Miembros del Gruo"
+      select_all: "seleccionar todos"
+      name: "Nombfre"
+      code: "Código"
+      class: "Clase"
+      subsystem: "Subsistema"
+      instance: "Instancia"
+      type: "Tipo"
+      added: "Agregado"
+      delete_group: "Borrar Grupo"
+      delete_group_confirm: "¿Está seguro que quiere borrar el grupo '{{group}}'?"
+      add_members: "Agregar Miembros"
+      remove_selected_members: "Remover Miembros Seleccionados"
+      remove_all_members: "Remover Todos los Miembros"
+
+    group_members_add_dialog:
+      title: "Agegar Miembros a Grupo Local {{group}}"
+      show_existing: "Mostrar miembros del gurpo en los resultados de la búsqueda"
+      add_selected: "Agregar Seleccionados al Grupo"
+      add_all: "Agregar Todos al Grupo"
+      name: "Nombre"
+
+    client_internal_certs_tab:
+      internal_servers: "Servidores Internos"
+      connection_type: "Tipo de conección para servidores consumidores de servicio"
+      connection_type_hint: "Tipo de conección para servidores proveedores de servicio de acuerdo a la pestaña Servicios (<i class='fa fa-wrench'></i>) del servicio URL (http/https)."
+      internal_ssl_certs: "Certificados TLS Internos"
+      security_server_cert: "Certificados de Servidor de Seguridad"
+      import_certificate: "Importar Certificados"
+      certificate_hash: "Hash del Certificado (%{alg})"
+      delete_internal_cert_confirm: "¿Está seguro que quiere borrar el certificado TLS interno {{hash}}?"
+
+    client_services_tab:
+      member_title: "{{member}} Servicios"
+      subsystem_title: "{{member}} subsistema {{subsystem}} Servicios"
+      client_services: "Servicios del Cliente"
+      add_wsdl: "Agregar WSDL"
+      access_rights: "Derechos de Acceso"
+      service_code: "Código de Servicio"
+      title: "Titulo"
+      url: "URL"
+      wsdl_uri: "WSDL URI"
+      timeout: "Tiempo de Espera(s)"
+      security_category: "Categoria de Seguridad"
+      last_refreshed: "Última Actualización"
+      disable_wsdl: "Deshabilitar Servicios"
+      disable_notice: "Advertencia para clietes que desean deshabilitar servicios:"
+      edit_wsdl_parameters: "Editar parametros de WSDL"
+      delete_wsdls_confirm: "¿Está seguro que desea borrar los WSDLs seleccionados?"
+      wsdl_validator_output: "Salida del Validador WSDL"
+
+    service_params_dialog:
+      edit_service_parameters: "Editar Parametros del Servicio"
+      apply_to_all: "Aplicar a todos en el WSDL"
+      service_url: "URL del Servicio"
+      required_sec_cat: "Categoria de Seguridad Requerida"
+      sslauth: "Verificar Certificado TLS"
+      no_timeout: "Un tiempo de espera igual a zero es interpretado como un tiempo de espera infinito."
+
+    service_acl_dialog:
+      title: "ACL for service: {{code}}"
+      title_with_service_title: "ACL for service: {{code}} ({{title}})"
+      access_rights: "Derechos de Acceso"
+      service: "Servicio"
+      member_name_group_desc: "Nombre del Miembro/Descripción del Grupo"
+      member_class: "Clase del Miembro"
+      member_group_code: "Miembro/Código de Grupo"
+      subsystem_code: "Código de Subsistema"
+      instance: "Instancia"
+      type: "Tipo"
+      access_rights_given: "Derechos de Acceso Otorgados"
+      add_subjects: "Agregar Sujetos"
+      remove_selected: "Remover Seleccionados"
+      remove_selected_confirm: "Remove access rights subjects: {{subjects}}"
+      remove_all: "Remover Todos"
+      remove_all_confirm: "¿Desea remover derechos de acceso acceso a todos los sujetos?"
+
+    acl_subjects_search_dialog:
+      add_subjects: "Agregar Subjetos"
+      add_selected: "Agregar Seleccionados a ACL"
+      add_all: "Agregar Todos a ACL"
+      add_all_confirm: "Agregar derechos de acceso a todos sujetos?"
+
+    client_acl_subjects_tab:
+      acl_subjects: "Clientes del Servicio"
+      open_services: "Derechos de Acceso"
+      subject_name: "Nombre del Miembro/Descripción del Grupo"
+      client_not_found: "Cliente no encontrado en la configuración Global"
+      group_not_found: "Gupo no encontrado en la configuración Global"
+
+    acl_subject_open_services_dialog:
+      title: "Derechos de Acceso a Servicio para {{name}} {{id}}"
+      add_services: "Agregar Servicios"
+      service_code: "Código de Servicio"
+      service_title: "Titulo"
+      rights_given: "Derechos de Acceso Otorgados"
+      add_selected: "Agregar Seleccionados a ACL"
+      add_all: "Agregar Todos a ACL"
+      delete_selected_confirm: "¿Está seguro que desea remover los servicios seleccionados: {{services}} ?"
+      delete_all_confirm: "¿Está seguro que desea remover todos los servicios?"
+
+  diagnostics:
+    index:
+      global_configuration: "Configuración Global"
+      timestamping: "Sellado de Tiempo"
+      title_ocsp: "Servidores OCSP"
+      label_ocsp_cert_service: "Servicio de Certificación: "
+      service_url: "URL del Servicio"
+      status: "Estado"
+      message: "Mensage"
+      previous_update: "Última Actualización"
+      next_update: "Próxima Actualización"
+      next_update_at_latest: "Próxima actualización antes de "
+
+  init:
+    index:
+      heading: "Configureación Inicial"
+      security_server_owner: "Propietario del Servidor de Seguridad"
+      member_name: "Nombre del Miembro"
+      member_class: "Clase del Miembro"
+      member_code: "Código del Miembro"
+      security_server: "Servidor de Seguridad"
+      security_server_code: "Código del Servidor de Seguridad"
+      software_token: "Token de Software"
+      pin: "PIN"
+      repeat_pin: "Repita PIN"
+      initialized: "Servidor de Seguridad inicializado"
+
+  keys:
+    index:
+      certificate: "Certificado"
+      client: "Cliente"
+      member: "Miembro"
+      ocsp_response: "respuesta OCSP"
+      expires: "Expira"
+      status: "Estado"
+      details: "Detalles"
+      generate_key: "Generar Llave"
+      generate_csr: "Generar CSR"
+      generate_csr_title: "Generar Petición de Firma de Certificado"
+      activate: "Activar"
+      register: "Registrar"
+      unregister: "Eliminar registro"
+      label: "Etiqueta"
+      import_certificate: "Importar certificado"
+      usage: "Uso"
+      usage_sign: "Firmar"
+      usage_auth: "Autorizar"
+      approved_ca: "Servicios de Certificación"
+      csr_format: "Formato CSR"
+      subject_dn: "Nombre Distinguido del Sujeto"
+      token_details: "Detalles del Token"
+      key_details: "Detalles de la Llave"
+      certificate_location: "Ubicación del Certificado"
+      registration_request: "Petición de registro"
+      server_dns_or_ip: "Nombre DNS ó direccion IP del Servidor de Seguridad"
+      no_keys: "No se encontraron objetos"
+      unregister_cert_confirm: "¿Está seguro que desea eliminar registro del certificado '{{hash}}'?"
+      delete_cert_from_conf_confirm: "Está seguro que desea borrar el certificado '{{hash}}' de la configuración del servidor?"
+      delete_cert_from_token_confirm: "Está seguro que desea borrar el certificado '{{hash}}' del token '{{token}}'?"
+      delete_csr_confirm: "¿Está seguro que desea borrar la petición '{{hash}}'?"
+      locked: "BLOQUEADO"
+      logout: "Salir"
+      delete_key_confirm: "¿Desea borrar la llave '{{key}}' y todos los certificados asociados de la configuración del servidor?"
+      delete_key_from_token_confirm: "¿Desea borrar la llave '{{key}}' y todos los certificados asociados del token '{{token}}'?"
+      delete_key_and_unregister_certs_confirm: "La llave '{{key}}' tiene certificados cuyo registro necesita ser eliminado. ¿ Desea eliminar el registro, borrar los respectivos certificados, y borrar la llave de la configuración del servidor?"
+      token: "Token: "
+      key: "Llave: "
+    token_details:
+      friendly_name: "Nombre corto"
+      token_info: "Información del Token"
+    key_details:
+      friendly_name: "Nombre corto"
+      friendly_name_hint: "La llave puede ser renombrada luego de importar un certificado o crear una petición de certificado."
+      key_info: "Informacióon de la llave"
+      key_id: "ID de la llave"
+      readonly: "Solo lectura"
+
+  shared:
+    cert_details_dialog:
+      cert_details: "Detalles del Certificado"
+
+  sysparams:
+    index:
+      tsps: "Servicios de Sellado de Tiempo"
+      tsp_name: "Servicio de sellado de tiempo"
+      tsp_url: "URL del servicio"
+      internal_ssl_cert: "Certificado TLS Interno"
+      internal_ssl_cert_hash: "Hash del Certificado (%{alg})"
+      internal_ssl_generate_key: "Generar Nueva Llave TLS"
+      internal_ssl_generate_csr: "Generar Petición de Certificado"
+      generate_internal_ssl_confirm: "¿Desea generar nueva llave TLS interna y certificado?"
+      distinguished_name: "Nombre distinguido"
+      import_certificate: "Importar certificado"
+    tsp_add_dialog:
+      add_tsp: "Agregar Servicio de Sellado de Tiempo"
+      approved_tsp: "Servicio de Sellado de Tiempo verificado"
+
+  layouts:
+    application:
+      title: "Administración del Servidor de Seguridad"
+      server_type: "Servidor de Seguridad"
+
+  anchor:
+    title: "Ancla de Configuración"
+    import_title: "Importar Ancla de Configuración"
+    upload_title: "Subir Ancla de Configuración"
+    upload_confirm: "Configuration anchor details: <table style=\"margin: 1em 0px;\" class=\"details\"><tbody><tr><td class=\"semibold\">Hash ({{hash_algorithm}})</td><td>{{hash}}</td></tr><tr><td class=\"semibold\">Generada</td><td>{{generated_at}}</td></tr></tbody></table>¿Continar importando?"

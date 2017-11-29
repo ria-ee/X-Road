@@ -1,0 +1,114 @@
+es:
+  base_login:
+    action:
+      index: "Entrar"
+      logout: "Salir"
+
+  common:
+    params_error: "Error en los parámetros de consulta"
+    changes_saved: "Cambios guardados"
+    cert_imported: "Certificado importado exitosamente"
+    proxy_org_name: "Servidor de Seguridad X-Road"
+    proxy_org_name_az: "Servidor de Seguridad EHDIS"
+    present: "Presente"
+    missing: "No está disponible"
+    time_format: "%Y-%m-%d %H:%M:%S"
+    time_format_with_timezone: "%Z %Y-%m-%d %H:%M:%S"
+    locale_en: "Inglés (%{short})"
+    locale_et: "Eesti (%{short})"
+    locale_es: "Español (%{short})"
+    filename_error: "El archivo '%{file}' contiene caracteres invalidos. Caracteres validos incluyen: (A-Z), (a-z), (0-9), (_), (.), (-)."
+    user_action_error: "Error al %{translated_action_name}: %{error_message}"
+    session_timed_out: "<div class='align-center'>La sesión expiró. Redireccionado..</div>"
+    restore_in_progress: "<div class='align-center'>Restauración en progreso. Redireccionado..</div>"
+    initialization_required: "<div class='align-center'>Initialización requerida. Redireccionado..</div>"
+
+  coded_exception:
+    pin_incorrect: "PIN incorrecto"
+    key_not_found_on_token: "Llave '%{0}' no encontrada en token '%{1}'"
+    unsupported_sign_algorithm: "Algoritmo de firma desconocido '%{0}'"
+    token_is_readonly: "Token '%{0}' es solo lectura"
+    cert_request_wrong_usage: "No es posible agregar la solicitud de certificado '%{0}' a la llave '%{1}' "
+    csr_not_found: "Petición de certificado '%{0}' no encontrada"
+    auth_cert_under_softtoken: "Solicitud de certificado para autenticación solo pueden ser creadas en los 'software tokens'"
+    auth_key_not_found_for_server: "No se encontro llave de autenticación activa para for el servidor de seguridad '%{0}'"
+    certificate_with_hash_not_found: "No se encontro el certificado con hash '%{0}'"
+    member_certs_not_found: "No se encontro ningún certificado para el miembro '%{0}'"
+    member_has_no_suitable_certs: "El miembro '%{0}' no tiene certificados"
+    member_not_found: "Certificado emitido al miembro desconocido '%{0}'"
+    failed_to_parse_cert: "Error al leer certificado: %{0}"
+    key_not_found_for_certificate: "No se pudo encontrar la llave correspondiente al certificado"
+    cert_exists_under_key: "Certificado ya existe najo la llave '%{0}'"
+    wrong_cert_usage:
+      both: "Firmar ó Autenticar, solamente uno de ellos es permitido"
+      none: "Certificado no puede ser usado para firmar ni autenticar"
+      auth_to_sign: "El certificado de autenticación no puede ser usado en llaves de firma"
+      sign_to_auth: "El certificado de firma no puede ser usado en llaves de autenticación"
+    cert_chain_validation_failed: "Error de validación de la cadena de confianza del certificado: %{0}"
+    token_not_found: "Token '%{0}' no encontrado"
+    token_not_available: "Token '%{0}' no esta disponible"
+    token_not_active: "Token PIN no ha sido ingresado"
+    token_not_initialized: "Token '%{0}' no ha sido inicializado"
+    key_not_found: "Llave '%{0}' no se encontró"
+    key_not_available: "Llave '%{0}' no esta disponible"
+    cert_with_id_not_found: "Certificado con id '%{0}' no se encontró"
+    login_failed: "Falló el inicio de sesion: %{0}"
+    logout_failed: "Falló el cierre de sesion: %{0}"
+    cert_import_failed: "%{0}"
+
+  validation:
+    missing_param: "Parámetro requerido: %{param}"
+    unexpected_param: "Parámetro desconocido: %{param}"
+    too_long_param: "El parámetro ingresado '%{param}' excede los 255 caracteres"
+    invalid_email: "Dirección de correo electrónico invalida: '%{addr}'"
+    invalid_filename: "Nombre de archivo invalido: '%{val}'"
+    invalid_int: "Número entero invalido: '%{val}'"
+    invalid_timeout: "El valor de tiempo de espera debe ser un número entero positivo."
+    invalid_url: "URL invalido, debe empezar con 'http' o 'https'"
+    invalid_host_address: "Dirección de equipo (host) invalida"
+    invalid_cert: "Formato de archivo incorrecto. Solamente archivos PEM y DER son permitidos."
+
+  menu:
+    management:
+      backup_and_restore: "Respaldos y Restauración"
+
+  about:
+    unknown: "desconocido"
+
+  activate_token:
+    pin_locked: "PIN bloqueado"
+    pin_format_incorrect: "Formato de PIN incorrecto"
+    final_try: "intentos disponibles: 1"
+
+  backup:
+    action:
+      index: "mostrar pagina de respaldo y restaurar"
+      check_backup_file_existence: "verificar existencia de archivo de respaldo"
+      refresh_files: "refrescar archivo de respaldo"
+      download: "descargar archivo de respaldo"
+      backup: "respaldar configuración"
+      restore: "restaurar configuración"
+      delete_file: "borrar archivo de respaldo"
+      upload_new: "subir neuvo archivo de respaldo"
+    success:
+      delete: "Archivo de respaldo borrado exitosamente"
+      upload: "Nuevo archivo de respaldo cargado exitosamente"
+    error:
+      delete: "Falló el borrado de archivo de respaldo: '%{reason}'"
+      not_tar: "El archivo de respaldo de estar en formato tar"
+      invalid_extension: "El archivo '%{file}' tiene una extension invalida. Extensiones validas son '%{extensions}'"
+      other: "El archivo '%{file}' tiene una extension invalida, las extensiones validas son '%{extensions}'"
+      invalid_content_type: "El contenido del archivo es invalido: '%{content_type}', contenidos validos son '%{allowed_content_types}'"
+
+  conf_verification:
+    anchor_not_for_external_source: "El ancla apunta a una fuente de configuración interna. Solamente anclas con fuente de configuración externa son anclas de confianza"
+    missing_private_params: "Error al importar ancla de configuración: archivo invalido"
+    unreachable: "La fuente de configuración no esta disponible, verifique el URL de la fuente en el archivo ancla"
+    outdated: "La configuración de la fuente esta desactualizada"
+    signature_invalid: "La firma de la configuración no pudo ser verificada"
+    other: "Falló la verificación de la configuración"
+
+  restore:
+    success: "Se restauró la configuration desde el archivo '%{conf_file}'."
+    error:
+      script_failed: "Falló la restauración de configuración desde el archivo '%{conf_file}'."

@@ -1,0 +1,113 @@
+es:
+  coded_exception:
+    fault_code:
+      MalformedGlobalConf: " La Configuración Global está mal estructurada: %{reason}"
+
+  application:
+    globalconf_invalid: "La configuración global ha expirado"
+    softtoken_pin_not_entered: "Por favor ingrese el PIN del softtoken"
+    restart_service_failed: "Error al reiniciar el servicio '%{name}': %{output}"
+    database_connection_error: "No es posibleconectarse al servidor de base de datos"
+    invalid_anchor_file: "Error al importar ancla de configuración: archivo ancla invalido"
+    configuration_download_failed: "Error al descargar configuración: %{response}"
+
+  diagnostics:
+    confclient_status_failed: "Error al consultar estado del cliente global de configuración: %{response}"
+    return_success: "Ok."
+    error_code_internal: "Ocurrió un error interno."
+    error_code_invalid_signature_value: "Valor de firma invalido."
+    error_code_expired_conf: "La configuración global descargada ha expirado."
+    error_code_cannot_download_conf: "No es posible descargar la configuración global. Verifique su conexión de red y la conectividad a su proveedor de configuración."
+    error_code_missing_private_params: "La configuración global descargada no contiene parametros privados."
+    error_code_timestamp_request_timed_out: "La conexión al servidor de sellado de tiempo expiró. Verifique su conexión de red y la conectividad al servidor de sellado de tiempo."
+    error_code_malformed_timestamp_server_url: "Error leyendo la dirección, verifique el URL del servidor de sellado de tiempo."
+    error_code_unknown: "Código de error desconocido."
+    error_code_uninitialized: "El cliente de configuración esta inicializando."
+    error_code_timestamp_uninitialized: "Connexión exitosa, no se han atendido solicitudes de sellado de tiempo."
+    error_code_connection_failed: "Fallo la conexión al cliente de configuración; verifique que xroad-confclient esta ejecutandose en el servidor."
+    error_code_ocsp_connection_error: "No fue posible conectarse al servidor OCSP."
+    error_code_ocsp_failed: "No fue posible obtener una respuesta del servidor OCSP."
+    error_code_ocsp_response_invalid: "No fue posible procesar la respuesta del servidor OCSP."
+    error_code_ocsp_uninitialized: "Solicitud de estado sin enviar."
+    error_code_logmanager_unavailable: "No fue posible obtener el estado de la bitácora de  mensajes de sellado de tiempo"
+
+  init:
+    not_authorized: "Sin Autorización - Contacte al Administrador del Sistema"
+    already_initialized: "El servidor de seguridad ya fue inicializado"
+    mismatching_pins: "Los códigos de seguridad (PIN) no coinciden"
+    unregistered_member: "La persona/organización '%{member_class} : %{member_code}' no es un miembro registrado de X-Road"
+    configuration_downloaded: "Se descargó la configuración con éxito"
+    pin_not_ascii: "El código PIN solo puede contener caracteres ASCII."
+    pin_weak: "El código PIN no cumple con los requisitos de complejidad: tamaño actual es %{length} (mínimo: %{min_length}) caracteres y contiene caracteres %{character_class_count} (mínimo: %{min_character_class_count}) clases de caracteres."
+    security_server_exists: "El código del Servidor de Seguridad ya existe! elija otro código a menos que este restaurando un Servidor de Seguridad existente o creando una instalación con balanceo de carga. Desea continuar?"
+
+  menu:
+    configuration:
+      title: "Configuración"
+      clients: "Cliente de Servidor de Seguridad"
+      sysparams: "Parámetros del Sistema"
+    management:
+      title: "Administración"
+      keys: "Llaves y Certificados"
+      diagnostics: "Diágnosticos"
+  
+    help:
+      title: "Ayuda"
+      version: "Versión"
+
+  keys:
+    action:
+      import: "importar certificado"
+      import_cert: "importar certificado"
+      register: "registrar certificado"
+      unregister: "eliminar registro de certificado"
+      delete_key: "borrar llave"
+    cert_loaded: "Certificado cargado"
+    request_sent: "Solicitud enviada"
+    delreq_failed: "Error enviando solicitud de borrado de certificado: %{msg}. ¿Desea continuar borrando el certificado?"
+    csr_friendly_name: "Solicitud"
+
+  clients:
+    action:
+      client_regreq: "enviar solicitud de registro"
+      client_delreq: "enviar solicitud de borrado"
+      wsdl_add: "agregar WSDL"
+      wsdl_edit: "editar WSDL"
+      wsdl_refresh: "refrescar WSDL(s)"
+    client_exists: "Cliente ya existe"
+    client_does_not_exist: "Cliente no existe"
+    unregistered_member: "La persona/organisación '%{member}' no esta registrada como miembro de X-Road."
+    cert_in_use: "en uso"
+    cert_disabled: "desactivado"
+    cannot_delete_owner: "El dueño del servidor de seguridad no puede ser borrado"
+    cannot_register_owner: "El dueño del servidor de seguridad no puede ser registrado"
+    cert_exists: "Certificado ya existe"
+    wsdl_exists: "Recurso WSDL ya existe."
+    invalid_wsdl: "Estructura de archivo incorrecta. El URL del WSDL debe apuntar a un archivo WSDL."
+    malformed_wsdl_url: "URL invalido. El URL del WSDL debe apuntar a un archivo WSDL."
+    wsdl_download_failed: "Error descargando WSDL. El URL del WSDL debe apuntar a un archivo WSDL."
+    wsdl_validator_not_found: "Falló la ejecución de validación WSDL, no se encontró el comando."
+    wsdl_validator_not_executable: "Falló la ejecución de validación WSDL, el comando no es ejecutable."
+    wsdl_validation_failed: "Falló la validación WSDL(%{wsdl})"
+    wsdl_validation_warnings: "La validación WSDL (%{wsdl}) produjo el siguiente mensaje: <p><b>%{warnings}</b></p> Desea continuar?"
+    default_disabled_service_notice: "Fuera de servicio"
+    service_exists: "Servidor duplicado. El servicio '%{service}' ya existe bajo el WSDL %{wsdl}"
+    service_exists_refresh: "El nuevo servicio '%{service}' de %{wsdl1} también existe en %{wsdl2}"
+    adding_services: "Agregando servicios:<p class='bold'>%{added}</p>"
+    deleting_services: "Borrando servicios:<p class='bold'>%{deleted}</p>"
+    wsdl: "WSDL"
+    wsdl_disabled: "DESACTIVADO"
+    internal_server_ssl_error: "La negociación TLS con el servidor %{url} falló, existen errores en la onfiguración de los certificados del servidor"
+    group_exists: "Un grupo con código '%{code}' ya existe"
+
+  sysparams:
+    action:
+      tsp_add: "Agregar servicio de sellado de tiempo"
+      tsp_delete: "Borrar servicio de sellado de tiempo"
+    cert_invalid: "Certificado Invalido"
+    cert_loaded: "Certificado Instalado"
+    distributor_exists: "Distribuidor ya existe"
+    tsp_exists: "servicio de sellado de tiempo ya existe"
+    tsp_not_approved: "servicio de sellado de tiempo no aprovado"
+    key_generation_failed: "Error al generar nueva llave: %{msg}"
+    internal_anchor_upload_invalid_instance_id: "Falló la lectura del ancla de configuración: Se encontró un identificador de instancia desconcido"
