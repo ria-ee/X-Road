@@ -19,9 +19,9 @@ sudo update-ca-certificates -f
 cd ~
 
 if ! command -v rvm &>/dev/null; then
-	sudo apt-add-repository -y ppa:rael-gc/rvm
-	sudo apt-get update
-	sudo apt-get install rvm
+    sudo apt-add-repository -y ppa:rael-gc/rvm
+    sudo apt-get update
+    sudo apt-get install rvm
     source ~/.rvm/scripts/rvm
 fi
 
