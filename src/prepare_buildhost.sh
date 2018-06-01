@@ -21,12 +21,11 @@ cd ~
 if ! command -v rvm &>/dev/null; then
     sudo apt-add-repository -y ppa:rael-gc/rvm
     sudo apt-get update
-    sudo apt-get install rvm
-    source ~/.rvm/scripts/rvm
+    sudo apt-get install -y rvm
 fi
 
-rvm install jruby-$JRUBY_VERSION --binary --skip-gemsets
-rvm jruby-$JRUBY_VERSION do jgem install jruby-openssl jruby-launcher gem-wrappers rubygems-bundler rake:12.0.0 rvm jruby-jars:$JRUBY_VERSION bundler:1.14.6 warbler:2.0.4 bundler-audit
+sudo su - $(whoami) -c "rvm install jruby-$JRUBY_VERSION --binary --skip-gemsets"
+sudo su - $(whoami) -c "rvm jruby-$JRUBY_VERSION do jgem install jruby-openssl jruby-launcher gem-wrappers rubygems-bundler rake:12.0.0 rvm jruby-jars:$JRUBY_VERSION bundler:1.14.6 warbler:2.0.4 bundler-audit"
 
 mkdir -p /var/tmp/xroad
 
@@ -38,4 +37,3 @@ if [[ $REL -ge 16 && ! -e /.dockerenv ]]; then
         newgrp docker
     fi
 fi
-
