@@ -109,7 +109,6 @@ public class LogArchiver extends UntypedActor {
             try (LogArchiveWriter archiveWriter = createLogArchiveWriter(session)) {
                 while (!records.isEmpty()) {
                     archive(archiveWriter, records);
-                    runTransferCommand(getArchiveTransferCommand());
                     recordsArchived += records.size();
 
                     //flush changes (records marked as archived) and free memory
@@ -126,6 +125,9 @@ public class LogArchiver extends UntypedActor {
 
                     records = getRecordsToBeArchived(session, maxTimestampId);
                 }
+
+                runTransferCommand(getArchiveTransferCommand());
+
             } catch (Exception e) {
                 throw new CodedException(ErrorCodes.X_INTERNAL_ERROR, e);
             }
